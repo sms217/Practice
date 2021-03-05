@@ -25,7 +25,7 @@ public class AnimationBasic extends JPanel implements ActionListener {
         // 이미지 파일을 읽어서 image 객체로 생성
         // 10ms 마다 이벤트를 발생시키는 timer객체를 생성하고 timer를 start시킴
 
-        File file = new File("gui\\spaceship.jpg");
+        File file = new File("Practice\\spaceship.jpg");
         try {
             image = ImageIO.read(file);
         } catch (IOException e) {
