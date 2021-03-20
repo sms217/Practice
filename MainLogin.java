@@ -1,7 +1,7 @@
 package com.anjava;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.*;
 
@@ -10,49 +10,67 @@ import javax.swing.border.*;
 
 
 public class MainLogin extends JFrame implements ActionListener{
-	JPanel logInPanel, loggedInPanel;
-	JLabel mainTitle, subTitle, idLabel, pwdLabel;
+	JPanel logInPanel;
+	JLabel mainTitle, subTitle, idLabel, pwdLabel, welcome;
 	JTextField ID;
-	JPasswordField pwdArea;
+	JPasswordField PASSWORD;;
 	JButton logInBtn, signUpBtn;
 	JDialog logInPopUp, signUpPopUp;
 	
+	LoggedInPanel loggedInPanel = new LoggedInPanel();
 	FakeDB fake = new FakeDB();
 	
 	MainLogin(){
 		
-		//LogInPanel
+		//Panel
+		 //LogInPanel
 		logInPanel = new JPanel();
 		
 		
-		//TitleLabel
-		 //Main Title
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
+		
+		//Label
+		
+		 //Main Title Label
 		mainTitle = new JLabel("영진 2WDJ 좌석 예약");
 		mainTitle.setBounds(155,-160,500,500);
 		mainTitle.setFont(new Font(null,Font.CENTER_BASELINE,50));
 		
-		 //Sub Title
+		 //Sub Title Label
 		subTitle = new JLabel("Anjava");
 		subTitle.setBounds(365,-110,500,500);
 		subTitle.setFont(new Font(null,Font.BOLD,22));
+		
+		 //ID Label
+		idLabel = new JLabel("ID");
+		idLabel.setBounds(47,20,135,20);
+		
+		 //Password Label
+		pwdLabel = new JLabel("PW");
+		pwdLabel.setBounds(38,45,135,20);
+		
+		 //welcome Label
+		welcome = new JLabel("안녕하세요. " + fake.fakeName + "님");
+		welcome.setBounds(5,-123,300,300);
+		welcome.setFont(new Font(null,Font.CENTER_BASELINE,30));
+		welcome.setVisible(false);
+		
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		
 		
 		//TextField
 		 //ID
 		ID = new JTextField(15);
 		ID.setBounds(64,20,135,20);
-		
-		  //ID Label
-		idLabel = new JLabel("ID");
-		idLabel.setBounds(47,20,135,20);
-		
+	
 		 //Password
-		pwdArea = new JPasswordField(15);
-		pwdArea.setBounds(64,45,135,20);
+		PASSWORD = new JPasswordField(15);
+		PASSWORD.setBounds(64,45,135,20);
 		
-		  //Password Label
-		pwdLabel = new JLabel("PW");
-		pwdLabel.setBounds(38,45,135,20);
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		
 		
 		//Button
@@ -67,6 +85,7 @@ public class MainLogin extends JFrame implements ActionListener{
 		signUpBtn.addActionListener(this);
 		
 		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		
 		
 		
@@ -75,11 +94,15 @@ public class MainLogin extends JFrame implements ActionListener{
 		logInPanel.setLayout(null);
 		logInPanel.setBounds(275, 190, 250, 150);
 		logInPanel.add(ID);
-		logInPanel.add(pwdArea);
+		logInPanel.add(PASSWORD);
 		logInPanel.add(idLabel);
 		logInPanel.add(pwdLabel);
 		logInPanel.add(logInBtn);
 		logInPanel.add(signUpBtn);
+		
+		
+		//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		
 		
 		//Frame Setting
 		this.setLayout(null);
@@ -87,30 +110,38 @@ public class MainLogin extends JFrame implements ActionListener{
 		this.add(subTitle);
 		this.add(logInPanel);
 		this.setTitle("Anjava(앉아봐)");
+		this.add(welcome);
 		this.setSize(800,500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
+		
+			
 	}
+	
+	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainLogin lg = new MainLogin();
 		
+		
+		MainLogin logInfo = new MainLogin();
+		//아이디, 비밀번호 설정
+		String userID = fake.fakeID;
+		String userPwd = fake.fakePW;
+		logInfo.ID.setText(userID);
+		logInfo.PASSWORD.setText(userPwd);
 		
 		//로그인버튼을 눌렀을 때
-		if(e.getSource()==logInBtn) {
-			lg.ID.setText(lg.ID.getText());
-			System.out.println(lg.ID.getText());
-			if(lg.ID.getText().equals(fake.fakeID)) {
-				lg.logInPanel.setVisible(false);
-				lg.mainTitle.setVisible(false);
-				lg.subTitle.setVisible(false);
-				
-				loggedInPanel = new JPanel();
-				loggedInPanel.setBounds(0,0,800,500);
-				loggedInPanel.setBorder(new LineBorder(Color.pink));
-				lg.add(loggedInPanel);
+		if(e.getSource()==logInBtn) {			
+			if(logInfo.ID.getText().equals(userID) && logInfo.PASSWORD.getText().equals(userPwd)) {
+				logInfo.logInPanel.setVisible(false);
+				logInfo.mainTitle.setVisible(false);
+				logInfo.subTitle.setVisible(false);
+				logInfo.add(welcome);
+				logInfo.add(loggedInPanel);
+				welcome.setVisible(true);
 			}else {
 				JOptionPane.showInternalMessageDialog(null, "로그인 정보가 일치하지 않습니다.", "정보 불일치",0 );
 			}
@@ -118,6 +149,13 @@ public class MainLogin extends JFrame implements ActionListener{
 		
 		//회원가입버튼을 눌렀을 때
 		if(e.getSource()==signUpBtn) {
+			SignUpPanel signUpPanel = new SignUpPanel();
+			logInfo.logInPanel.setVisible(false);
+			logInfo.mainTitle.setVisible(false);
+			logInfo.subTitle.setVisible(false);
+			logInfo.setLayout(new FlowLayout());
+			welcome.setVisible(false);
+			logInfo.add(signUpPanel);
 			
 		}
 		
