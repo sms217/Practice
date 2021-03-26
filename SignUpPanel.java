@@ -6,27 +6,28 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SignUpPanel extends JPanel implements ActionListener{
+public class SignUpPanel extends JPanel{
 	
 	String[] categories = {"Name", "ID", "Password", "Password Check", "Student ID", "Email"};
 	JTextField[] fields = new JTextField[categories.length];
+	JPasswordField[] pwdFields = new JPasswordField[2];
 	
 	SignUpPanel(){
 
-		for(int i = 0; i < categories.length; i++) {
+		for(int i = 0; i < categories.length; i++) {			
+			//비밀번호 필드 설정
+			if(i == 2 || i ==3) {
+				pwdFields[i-2] = new JPasswordField(i);
+				this.add(pwdFields[i-2]);
+			}else {
 			fields[i] = new JTextField(15);
 			fields[i].setToolTipText(categories[i]);
 			this.add(fields[i]);
+			}
 		}
-		this.setBorder(new LineBorder(Color.black));
+
+		this.setBounds(300,100,200,200);
 		this.setLayout(new GridLayout(6,0,10,10));
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

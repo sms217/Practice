@@ -1,8 +1,8 @@
 package com.anjava;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.*;
 
 import javax.swing.*;
@@ -10,13 +10,12 @@ import javax.swing.border.*;
 
 
 public class MainLogin extends JFrame implements ActionListener{
-	JPanel logInPanel;
+	JPanel logInPanel, signUpBtnPanel, logInLabelPanel;
+	JLabel[] logInLabels;
 	JLabel mainTitle, subTitle, idLabel, pwdLabel, welcome;
 	JTextField ID;
 	JPasswordField PASSWORD;;
-	JButton logInBtn, signUpBtn;
-	JDialog logInPopUp, signUpPopUp;
-	
+	JButton logInBtn, signUpBtn, signUpBtn2;
 	LoggedInPanel loggedInPanel = new LoggedInPanel();
 	FakeDB fake = new FakeDB();
 	
@@ -61,6 +60,7 @@ public class MainLogin extends JFrame implements ActionListener{
 		
 		
 		//TextField
+		
 		 //ID
 		ID = new JTextField(15);
 		ID.setBounds(64,20,135,20);
@@ -125,17 +125,16 @@ public class MainLogin extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
 		MainLogin logInfo = new MainLogin();
+		
 		//아이디, 비밀번호 설정
 		String userID = fake.fakeID;
 		String userPwd = fake.fakePW;
-		logInfo.ID.setText(userID);
-		logInfo.PASSWORD.setText(userPwd);
+		
 		
 		//로그인버튼을 눌렀을 때
 		if(e.getSource()==logInBtn) {			
-			if(logInfo.ID.getText().equals(userID) && logInfo.PASSWORD.getText().equals(userPwd)) {
+			if(ID.getText().equals(userID)&&PASSWORD.getText().equals(fake.fakePW)) {
 				logInfo.logInPanel.setVisible(false);
 				logInfo.mainTitle.setVisible(false);
 				logInfo.subTitle.setVisible(false);
@@ -147,16 +146,64 @@ public class MainLogin extends JFrame implements ActionListener{
 			}
 		}
 		
+		
+		
 		//회원가입버튼을 눌렀을 때
 		if(e.getSource()==signUpBtn) {
+			
 			SignUpPanel signUpPanel = new SignUpPanel();
+			signUpBtnPanel = new JPanel();
+			
+			logInLabelPanel = new JPanel();
+			logInLabels = new JLabel[signUpPanel.categories.length];
+			for(int i = 0; i < signUpPanel.categories.length; i++) {
+				logInLabels[i] = new JLabel(signUpPanel.categories[i]);
+				logInLabels[i].setHorizontalAlignment(JLabel.RIGHT);
+				logInLabelPanel.add(logInLabels[i]);
+			}
+			
+			
+			logInLabelPanel.setLayout(new GridLayout(6,0,10,10));
+			logInLabelPanel.setBounds(90,100,200,200);
+			
+			
+			
+			signUpBtn2 = new JButton("회원가입");
+			signUpBtnPanel.add(signUpBtn2);
+			signUpBtnPanel.setBounds(347,310,100,40);
+			
+			signUpBtn2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//회원정보를 DB에 올리는 코드
+					
+					logInfo.remove(signUpPanel);
+					//다시 로그인화면으로
+					logInfo.logInPanel.setVisible(true);
+					logInfo.mainTitle.setVisible(true);
+					logInfo.subTitle.setVisible(true);
+					for(int i = 0; i < signUpPanel.categories.length; i++) {
+						logInLabels[i].setVisible(false);
+					}
+					signUpBtn2.setVisible(false);
+					
+					JOptionPane.showInternalMessageDialog(null, "회원가입이 완료되었습니다.\n다시 로그인하십시오.","회원가입완료",1);
+				}				
+			});
+			
+			
+			
+			
+			
 			logInfo.logInPanel.setVisible(false);
 			logInfo.mainTitle.setVisible(false);
 			logInfo.subTitle.setVisible(false);
-			logInfo.setLayout(new FlowLayout());
 			welcome.setVisible(false);
-			logInfo.add(signUpPanel);
 			
+			
+			logInfo.add(logInLabelPanel);
+			logInfo.add(signUpBtnPanel);
+			logInfo.add(signUpPanel);
 		}
 		
 	}
