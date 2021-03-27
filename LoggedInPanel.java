@@ -15,10 +15,6 @@ public class LoggedInPanel extends JPanel{
 	LoggedInPanel2 lip = new LoggedInPanel2(); 
 	
 	public LoggedInPanel(){
-
-	
-		
-		
 		//PanelSetting
 		this.setBounds(6,54,600,400);
 		this.setLayout(new GridLayout(3,4,5,5));
