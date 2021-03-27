@@ -10,7 +10,6 @@ import javax.swing.border.LineBorder;
 
 public class LoggedInPanel extends JPanel implements ActionListener{
 	JButton[] reserveBtn = new JButton[12];
-	JScrollPane scroll;
 	JPanel labelPanel;
 	
 	LoggedInPanel(){
@@ -19,7 +18,7 @@ public class LoggedInPanel extends JPanel implements ActionListener{
 		
 		//Buttons
 		for(int i = 0; i < 12; i++) {
-			reserveBtn[i] = new JButton("<HTML>º»°ü 202È£½Ç<br>¿¹¾à ÇöÈ²20/40<br>ÁÂ¼® ÃÊ±âÈ­:2021/03/09<br>¾ÕÀ¸·Î 27ÀÏ 5½Ã°£ 39ºĞ<HTML>");
+			reserveBtn[i] = new JButton("<HTML>ë³¸ê´€ 202í˜¸ì‹¤<br>ì˜ˆì•½ í˜„í™©20/40<br>ì¢Œì„ì´ˆê¸°í™”:2021/03/09<br>ì•ìœ¼ë¡œ 27ì¼ 5ì‹œê°„ 39ë¶„<HTML>");
 			reserveBtn[i].setBackground(Color.gray.brighter());
 			reserveBtn[i].setBorder(null);
 			reserveBtn[i].addActionListener(this);
@@ -30,12 +29,8 @@ public class LoggedInPanel extends JPanel implements ActionListener{
 		
 		
 		
-		//Scroll
-		if(reserveBtn.length > 12)
-		scroll = new JScrollPane();
 		
 		//PanelSetting
-//		this.add(labelPanel);
 		this.setBounds(6,54,600,400);
 		this.setLayout(new GridLayout(3,4,5,5));
 	}
@@ -43,7 +38,7 @@ public class LoggedInPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		//È£½Ç ´­·¶À» ¶§
+		//ì˜ˆì•½ë²„íŠ¼ì„¤ì •
 		for(int i=0; i <12; i++) {
 			reserveBtn[i].setVisible(false);
 		}

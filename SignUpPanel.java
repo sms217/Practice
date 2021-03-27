@@ -15,7 +15,7 @@ public class SignUpPanel extends JPanel{
 	SignUpPanel(){
 
 		for(int i = 0; i < categories.length; i++) {			
-			//ºñ¹Ð¹øÈ£ ÇÊµå ¼³Á¤
+			//íŒ¨ìŠ¤ì›Œë“œí•„ë“œ ì„¤ì •
 			if(i == 2 || i ==3) {
 				pwdFields[i-2] = new JPasswordField(i);
 				this.add(pwdFields[i-2]);

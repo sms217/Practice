@@ -26,13 +26,13 @@ public class MainLogin extends JFrame implements ActionListener{
 		logInPanel = new JPanel();
 		
 		
-		//�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�
+		//----------------------------------------------------------------------------------------------
 		
 		
 		//Label
 		
 		 //Main Title Label
-		mainTitle = new JLabel("���� 2WDJ �¼� ����");
+		mainTitle = new JLabel("영진 2WDJ 좌석 예약");
 		mainTitle.setBounds(155,-160,500,500);
 		mainTitle.setFont(new Font(null,Font.CENTER_BASELINE,50));
 		
@@ -50,13 +50,13 @@ public class MainLogin extends JFrame implements ActionListener{
 		pwdLabel.setBounds(38,45,135,20);
 		
 		 //welcome Label
-		welcome = new JLabel("�ȳ��ϼ���. " + fake.fakeName + "��");
+		welcome = new JLabel("안녕하세요. " + fake.fakeName + "님");
 		welcome.setBounds(5,-123,300,300);
 		welcome.setFont(new Font(null,Font.CENTER_BASELINE,30));
 		welcome.setVisible(false);
 		
 		
-		//�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�
+		//----------------------------------------------------------------------------------------------
 		
 		
 		//TextField
@@ -70,22 +70,22 @@ public class MainLogin extends JFrame implements ActionListener{
 		PASSWORD.setBounds(64,45,135,20);
 		
 		
-		//�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�
+		//----------------------------------------------------------------------------------------------
 		
 		
 		//Button
 		 //LogIn Button
-		logInBtn = new JButton("�α���");
+		logInBtn = new JButton("로그인");
 		logInBtn.setBounds(85, 75, 80, 25);
 		logInBtn.addActionListener(this);
 		
 		 //SignUp Button
-		signUpBtn = new JButton("ȸ������");
+		signUpBtn = new JButton("회원가입");
 		signUpBtn.setBounds(80, 110, 90, 25);
 		signUpBtn.addActionListener(this);
 		
 		
-		//�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�
+		//----------------------------------------------------------------------------------------------
 		
 		
 		
@@ -101,7 +101,7 @@ public class MainLogin extends JFrame implements ActionListener{
 		logInPanel.add(signUpBtn);
 		
 		
-		//�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�
+		//----------------------------------------------------------------------------------------------
 		
 		
 		//Frame Setting
@@ -109,7 +109,7 @@ public class MainLogin extends JFrame implements ActionListener{
 		this.add(mainTitle);
 		this.add(subTitle);
 		this.add(logInPanel);
-		this.setTitle("Anjava(�ɾƺ�)");
+		this.setTitle("Anjava(앉아봐)");
 		this.add(welcome);
 		this.setSize(800,500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,12 +127,12 @@ public class MainLogin extends JFrame implements ActionListener{
 		
 		MainLogin logInfo = new MainLogin();
 		
-		//���̵�, ��й�ȣ ����
+		//유저 아이디, 비밀번호 설정
 		String userID = fake.fakeID;
 		String userPwd = fake.fakePW;
 		
 		
-		//�α��ι�ư�� ������ ��
+		//로그인 버튼 눌렀을 때
 		if(e.getSource()==logInBtn) {			
 			if(ID.getText().equals(userID)&&PASSWORD.getText().equals(fake.fakePW)) {
 				logInfo.logInPanel.setVisible(false);
@@ -141,14 +141,18 @@ public class MainLogin extends JFrame implements ActionListener{
 				logInfo.add(welcome);
 				logInfo.add(loggedInPanel);
 				welcome.setVisible(true);
+				JTextArea reserve = new JTextArea(loggedInPanel.reserveBtn[0].getText());
+				reserve.setBounds(615,54,160,400);
+				reserve.setBackground(Color.gray.brighter());
+				logInfo.add(reserve);
 			}else {
-				JOptionPane.showInternalMessageDialog(null, "�α��� ������ ��ġ���� �ʽ��ϴ�.", "���� ����ġ",0 );
+				JOptionPane.showInternalMessageDialog(null, "회원정보가 일치하지 않습니다.", "정보 불일치",0 );
 			}
 		}
 		
 		
 		
-		//ȸ�����Թ�ư�� ������ ��
+		//메인 화면에서 회원가입 버튼 눌렀을 때
 		if(e.getSource()==signUpBtn) {
 			
 			SignUpPanel signUpPanel = new SignUpPanel();
@@ -168,17 +172,17 @@ public class MainLogin extends JFrame implements ActionListener{
 			
 			
 			
-			signUpBtn2 = new JButton("ȸ������");
+			signUpBtn2 = new JButton("회원가입");
 			signUpBtnPanel.add(signUpBtn2);
 			signUpBtnPanel.setBounds(347,310,100,40);
 			
 			signUpBtn2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//ȸ�������� DB�� �ø��� �ڵ�
+					//회원가입 창에서 회원가입 버튼 눌렀을 때
 					
 					logInfo.remove(signUpPanel);
-					//�ٽ� �α���ȭ������
+					
 					logInfo.logInPanel.setVisible(true);
 					logInfo.mainTitle.setVisible(true);
 					logInfo.subTitle.setVisible(true);
@@ -187,7 +191,7 @@ public class MainLogin extends JFrame implements ActionListener{
 					}
 					signUpBtn2.setVisible(false);
 					
-					JOptionPane.showInternalMessageDialog(null, "ȸ�������� �Ϸ�Ǿ����ϴ�.\n�ٽ� �α����Ͻʽÿ�.","ȸ�����ԿϷ�",1);
+					JOptionPane.showInternalMessageDialog(null, "회원가입이 완료되었습니다.\n 다시 로그인 해주십시오.","회원가입 완료",1);
 				}				
 			});
 			
