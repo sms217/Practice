@@ -12,7 +12,7 @@ public class SignUpPanel extends JPanel{
 	JTextField[] fields = new JTextField[categories.length];
 	JPasswordField[] pwdFields = new JPasswordField[2];
 	
-	SignUpPanel(){
+	public SignUpPanel(){
 
 		for(int i = 0; i < categories.length; i++) {			
 			//패스워드필드 설정

@@ -17,9 +17,11 @@ public class MainLogin extends JFrame implements ActionListener{
 	JPasswordField PASSWORD;;
 	JButton logInBtn, signUpBtn, signUpBtn2;
 	LoggedInPanel loggedInPanel = new LoggedInPanel();
+	LoggedInPanel2 loggedInPanel2 = new LoggedInPanel2();
 	FakeDB fake = new FakeDB();
 	
-	MainLogin(){
+	
+	public MainLogin(){
 		
 		//Panel
 		 //LogInPanel
@@ -141,16 +143,32 @@ public class MainLogin extends JFrame implements ActionListener{
 				logInfo.add(welcome);
 				logInfo.add(loggedInPanel);
 				welcome.setVisible(true);
-				JTextArea reserve = new JTextArea(loggedInPanel.reserveBtn[0].getText());
-				reserve.setBounds(615,54,160,400);
-				reserve.setBackground(Color.gray.brighter());
-				logInfo.add(reserve);
+				logInfo.add(loggedInPanel2.reserve);
+				//Buttons
+				for(int i = 0; i < 12; i++) {
+					loggedInPanel.reserveBtn[i] = new JButton("<HTML>본관 202호실<br>예약 현황20/40<br>좌석초기화:2021/03/09<br>앞으로 27일 5시간 39분<HTML>");
+					loggedInPanel.reserveBtn[i].setBackground(Color.gray.brighter());
+					loggedInPanel.reserveBtn[i].setBorder(null);
+					loggedInPanel.reserveBtn[i].addActionListener((ActionListener) new ActionListener() {
+											@Override
+											public void actionPerformed(ActionEvent e) {
+												//예약버튼설정
+													for(int i=0; i <12; i++) {
+														loggedInPanel.reserveBtn[i].setVisible(false);
+													}
+													loggedInPanel2.reserve.setVisible(false);
+													System.out.println(5496);
+												}
+											});
+					loggedInPanel.add(loggedInPanel.reserveBtn[i]);
+				}
+				
+				
 			}else {
 				JOptionPane.showInternalMessageDialog(null, "회원정보가 일치하지 않습니다.", "정보 불일치",0 );
 			}
 		}
-		
-		
+
 		
 		//메인 화면에서 회원가입 버튼 눌렀을 때
 		if(e.getSource()==signUpBtn) {
@@ -159,6 +177,7 @@ public class MainLogin extends JFrame implements ActionListener{
 			signUpBtnPanel = new JPanel();
 			
 			logInLabelPanel = new JPanel();
+			
 			logInLabels = new JLabel[signUpPanel.categories.length];
 			for(int i = 0; i < signUpPanel.categories.length; i++) {
 				logInLabels[i] = new JLabel(signUpPanel.categories[i]);
