@@ -15,6 +15,5 @@ public class LoggedInPanel2 extends JPanel{
 		reserve = new JTextArea();
 		reserve.setBounds(615,54,160,400);
 		reserve.setBackground(Color.gray.brighter());
-		System.out.println(41645);
 	}
 }
