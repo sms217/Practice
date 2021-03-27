@@ -157,7 +157,6 @@ public class MainLogin extends JFrame implements ActionListener{
 														loggedInPanel.reserveBtn[i].setVisible(false);
 													}
 													loggedInPanel2.reserve.setVisible(false);
-													System.out.println(5496);
 												}
 											});
 					loggedInPanel.add(loggedInPanel.reserveBtn[i]);
